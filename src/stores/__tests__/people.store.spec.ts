@@ -21,9 +21,7 @@ describe('People Store', () => {
 
   it('fetchPeople action should fetch and store people successfully', async () => {
     const mockPeopleData: PeopleAPIResponse = {
-      count: 1,
-      next: null,
-      previous: null,
+      total: 1,
       results: [
         {
           name: 'Luke Skywalker',

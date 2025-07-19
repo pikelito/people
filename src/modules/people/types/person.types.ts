@@ -1,7 +1,5 @@
 export interface PeopleAPIResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
+  total: number;
   results: Person[];
 }
 
