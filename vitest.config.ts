@@ -1,13 +1,28 @@
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
-  plugins: [Vue()],
+  plugins: [
+    Vue(),
+    nodePolyfills({
+      globals: {
+        process: true,
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  optimizeDeps: {
+    include: [
+      'vite-plugin-node-polyfills/shims/buffer',
+      'vite-plugin-node-polyfills/shims/global',
+      'vite-plugin-node-polyfills/shims/process',
+    ],
   },
   test: {
     globals: true,
@@ -23,6 +38,12 @@ export default defineConfig({
         'src/**/*.test.ts',
         'src/**/*.spec.ts',
       ],
+    },
+    browser: {
+      enabled: true,
+      name: 'chromium',
+      provider: 'playwright',
+      headless: true,
     },
   },
 });
