@@ -10,6 +10,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'people-list',
     component: () => import('@/modules/people/pages/PeopleListPage.vue'),
   },
+  {
+    path: '/people/:id',
+    name: 'people-detail',
+    component: () => import('@/modules/people/pages/PersonDetailPage.vue'),
+  },
 ];
 
 const router = createRouter({
